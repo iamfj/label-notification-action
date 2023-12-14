@@ -1,0 +1,48 @@
+{
+  "git.allowForcePush": true,
+  "git.useForcePushWithLease": true,
+  "git.showActionButton": {
+    "commit": true,
+    "publish": true,
+    "sync": false
+  },
+  "gitlens.codeLens.authors.enabled": true,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.statusBar.enabled": false,
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifierEnding": "minimal",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.importModuleSpecifierEnding": "minimal",
+  "eslint.format.enable": true,
+  "eslint.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.experimental.useFlatConfig": false,
+  "eslint.workingDirectories": [
+    "./"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.configPath": ".prettierrc.js",
+  "prettier.enable": true,
+  "prettier.requireConfig": true,
+  "prettier.resolveGlobalModules": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true
+  },
+}

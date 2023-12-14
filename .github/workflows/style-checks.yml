@@ -1,0 +1,41 @@
+name: Style Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      - name: Cache npm
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: Install npm deps
+        run: npm ci --include=dev
+      - name: Report linting results
+        continue-on-error: true
+        run: |
+          npx eslint --output-file eslint_report.json --format json --no-error-on-unmatched-pattern --ext .js,.jsx,.ts,.tsx,.json .
+      - name: Annotate linting results
+        uses: ataylorme/eslint-annotate-action@v2
+        with:
+          report-json: 'eslint_report.json'
+          markdown-report-on-step-summary: true
