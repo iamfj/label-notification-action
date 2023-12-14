@@ -1,0 +1,23 @@
+name: 'Label Notifier'
+description: 'Notify individuals or teams when a label is applied to an issue or pull request.'
+author: '@iamfj'
+
+branding:
+  icon: 'bell'
+  color: 'gray-dark'
+
+inputs:
+  token:
+    description: 'The GitHub authentication token.'
+    required: false
+    default: ${{ github.token }}
+  mapping:
+    description: 'Mapping of label to notification recipients.'
+    required: true
+  message:
+    description: 'The message to post in the issue comment.'
+    default: 'Heads up {recipients} - the "{label}" label was applied to this issue.'
+
+runs:
+  using: node20
+  main: dist/index.js
