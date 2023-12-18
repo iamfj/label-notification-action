@@ -1,9 +1,0 @@
-{
-  "extends": ["plugin:jsonc/recommended-with-jsonc", "./node_modules/gts/"],
-  "overrides": [
-    {
-      "files": ["*.json", "*.json5", "*.jsonc"],
-      "parser": "jsonc-eslint-parser"
-    }
-  ]
-}

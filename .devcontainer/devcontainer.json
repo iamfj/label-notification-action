@@ -3,14 +3,18 @@
   "image": "mcr.microsoft.com/devcontainers/javascript-node:20-bullseye",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "postCreateCommand": ". ${NVM_DIR}/nvm.sh && nvm install && npm ci --include=dev",
-  "postStartCommand": "devcontainer-info",
+  "postStartCommand": "git config --global --add safe.directory /workspaces/${localWorkspaceFolderBasename} && devcontainer-info",
   "postAttachCommand": ". ${NVM_DIR}/nvm.sh && nvm use && git config --global diff.ool ...",
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind"
   ],
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
     }
   },
   "customizations": {

@@ -1,8 +1,8 @@
 import {GitHub} from '@actions/github/lib/utils';
 
-import {Meta} from '@/lib/helpers';
+import {Meta} from '@/lib/meta';
 
-export async function getAssignedLabels(
+export async function getLabels(
   octokit: InstanceType<typeof GitHub>,
   meta: Meta
 ): Promise<string[]> {
