@@ -1,0 +1,20 @@
+name: Label Notification GitHub Action
+description: Notify individuals or teams when a label is applied to an issue or pull request.
+author: Fabian Jocks (@iamfj)
+
+branding:
+  icon: 'bell'
+  color: 'gray-dark'
+
+inputs:
+  token:
+    description: 'The GitHub authentication token.'
+    required: false
+    default: ${{ github.token }}
+  mapping:
+    description: 'Mapping of label to notification recipients.'
+    required: true
+
+runs:
+  using: node20
+  main: dist/index.js
