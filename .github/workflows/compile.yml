@@ -7,6 +7,7 @@
 # If this workflow is run from a feature branch, it will act as an additional CI
 # check and fail if the checked-in `dist/` directory does not match what is
 # expected from the build.
+---
 name: Compile
 
 on:
@@ -36,10 +37,12 @@ jobs:
       - name: Compare distributions
         id: diff
         run: |
-          if [ "$(git diff --ignore-space-at-eol --text dist/ | wc -l)" -gt "0" ]; then
-            echo "Detected uncommitted changes after build. See status below:"
-            git diff --ignore-space-at-eol --text dist/
-            exit 1
+          if [ \
+            "$(git diff --ignore-space-at-eol --text dist/ | wc -l)" -gt "0" \
+          ]; then
+            echo "Detected uncommitted changes after build. See status below:";
+            git diff --ignore-space-at-eol --text dist/;
+            exit 1;
           fi
       - if: ${{ failure() && steps.diff.outcome == 'failure' }}
         name: Upload distribution

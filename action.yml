@@ -1,7 +1,9 @@
+---
 name: Label Notification GitHub Action
-description: Notify individuals or teams when a label is applied to an issue or pull request.
+description: |
+  Notify individuals or teams when a label is applied 
+  to an issue or pull request.
 author: Fabian Jocks (@iamfj)
-
 branding:
   icon: 'bell'
   color: 'gray-dark'
