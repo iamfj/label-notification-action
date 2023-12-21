@@ -11,9 +11,6 @@
 name: Compile
 
 on:
-  push:
-    branches:
-      - main
   pull_request_target:
 
 permissions:
@@ -50,21 +47,3 @@ jobs:
         with:
           name: dist
           path: dist/
-
-  release:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    name: Release
-    needs: check-dist
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Semantic Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
